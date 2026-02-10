@@ -6,18 +6,18 @@
 }
 
 :root {
-    --primary-color: #1a1a1a;
-    --primary-light: #2a2a2a;
+    --primary-color: #1e3a5f;
+    --primary-light: #2d4a6f;
     --accent-color: #3b82f6;
     --accent-dark: #2563eb;
     --accent-light: #60a5fa;
     --text-primary: #ffffff;
     --text-secondary: #d1d5db;
     --text-light: #9ca3af;
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #252525;
-    --bg-dark: #0f0f0f;
-    --border-color: #3a3a3a;
+    --bg-primary: #0a1929;
+    --bg-secondary: #1e3a5f;
+    --bg-dark: #05101a;
+    --border-color: #2d4a6f;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
@@ -51,7 +51,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(10, 25, 41, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
@@ -60,7 +60,7 @@ body {
 }
 
 .navbar.scrolled {
-    background: rgba(26, 26, 26, 0.98);
+    background: rgba(10, 25, 41, 0.98);
     box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
 }
 
@@ -68,7 +68,7 @@ body {
     max-width: 1000px;
     margin: 0.75rem auto;
     padding: 0.75rem 2rem;
-    background: rgba(37, 37, 37, 0.9);
+    background: rgba(30, 58, 95, 0.9);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 50px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.05);
@@ -235,9 +235,9 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(10, 25, 41, 0.95) 0%, rgba(5, 16, 26, 0.9) 100%);
     background-image: 
-        linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(15, 15, 15, 0.9) 100%),
+        linear-gradient(135deg, rgba(10, 25, 41, 0.95) 0%, rgba(5, 16, 26, 0.9) 100%),
         radial-gradient(at 20% 30%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
         radial-gradient(at 80% 70%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
 }
@@ -268,7 +268,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, rgba(26, 26, 26, 1) 0%, transparent 100%);
+    background: linear-gradient(90deg, rgba(10, 25, 41, 1) 0%, transparent 100%);
 }
 
 .hero-content {
@@ -674,7 +674,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.6) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 25, 41, 0.6) 100%);
 }
 
 .about-content {
@@ -729,6 +729,7 @@ section {
 .projects-section {
     background: var(--bg-primary);
     position: relative;
+    overflow: hidden;
 }
 
 .projects-section::before {
@@ -748,6 +749,7 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
+    position: relative;
 }
 
 .project-item {
@@ -756,6 +758,37 @@ section {
     border: 1px solid rgba(59, 130, 246, 0.1);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    opacity: 0;
+}
+
+.project-item:nth-child(odd) {
+    transform: translateX(-100px);
+}
+
+.project-item:nth-child(even) {
+    transform: translateX(100px);
+}
+
+.project-item.animated {
+    opacity: 1;
+    transform: translateX(0) !important;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.project-item:nth-child(1).animated {
+    transition-delay: 0.1s;
+}
+
+.project-item:nth-child(2).animated {
+    transition-delay: 0.2s;
+}
+
+.project-item:nth-child(3).animated {
+    transition-delay: 0.3s;
+}
+
+.project-item:nth-child(4).animated {
+    transition-delay: 0.4s;
 }
 
 .project-item::before {
