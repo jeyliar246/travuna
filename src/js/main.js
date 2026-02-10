@@ -114,17 +114,30 @@ if (contactForm) {
 
 // Intersection Observer for animations
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.2,
+    rootMargin: '0px 0px 0px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animated');
+            // Make sure items are visible
+            if (entry.target.classList.contains('gallery-item') || entry.target.classList.contains('service-item')) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = entry.target.classList.contains('gallery-item') ? 'scale(1)' : 'translateY(0)';
+            }
         } else {
             // Remove animated class when element leaves viewport to retrigger animation
             entry.target.classList.remove('animated');
+            // Reset for retrigger
+            if (entry.target.classList.contains('gallery-item')) {
+                entry.target.style.opacity = '0';
+                entry.target.style.transform = 'scale(0.9)';
+            } else if (entry.target.classList.contains('service-item')) {
+                entry.target.style.opacity = '0';
+                entry.target.style.transform = 'translateY(30px)';
+            }
         }
     });
 }, observerOptions);
@@ -140,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.gallery-item').forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'scale(0.9)';
-        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        item.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
         observer.observe(item);
     });
     
@@ -148,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.service-item').forEach((item, index) => {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
-        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        item.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
         observer.observe(item);
     });
     
