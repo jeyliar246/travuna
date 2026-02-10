@@ -122,6 +122,9 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animated');
+        } else {
+            // Remove animated class when element leaves viewport to retrigger animation
+            entry.target.classList.remove('animated');
         }
     });
 }, observerOptions);
